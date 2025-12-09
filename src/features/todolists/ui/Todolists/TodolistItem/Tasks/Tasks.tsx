@@ -2,15 +2,10 @@ import { TaskStatus } from "@/common/enums"
 import { useGetTasksQuery } from "@/features/todolists/api/tasksApi"
 import type { DomainTodolist } from "@/features/todolists/lib/types"
 import List from "@mui/material/List"
-import { TaskItem } from "./TaskItem/TaskItem"
-import { TasksSkeleton } from "./TasksSkeleton/TasksSkeleton"
 import { useState } from "react"
+import { TaskItem } from "./TaskItem/TaskItem"
 import { TasksPagination } from "./TasksPagination"
-import { PAGE_SIZE } from "@/common/constants"
-
-// пагинация - удалить последний элемент на второй странице
-// перейти на страницу или удалить таск - снова идут запросы на за другими тудулистами и тасками
-// isFething и currentData только для квери а для мутаций нет?
+import { TasksSkeleton } from "./TasksSkeleton/TasksSkeleton"
 
 type Props = {
   todolist: DomainTodolist

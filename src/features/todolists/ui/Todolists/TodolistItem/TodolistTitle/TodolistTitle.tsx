@@ -1,10 +1,7 @@
 import { EditableSpan } from "@/common/components"
-import { useAppDispatch } from "@/common/hooks"
-import type { RequestStatus } from "@/common/types"
 import {
-  todolistsApi,
   useRemoveTodolistMutation,
-  useUpdateTodolistTitleMutation,
+  useUpdateTodolistTitleMutation
 } from "@/features/todolists/api/todolistsApi"
 import type { DomainTodolist } from "@/features/todolists/lib/types"
 import DeleteIcon from "@mui/icons-material/Delete"

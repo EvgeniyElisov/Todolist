@@ -17,7 +17,7 @@ type Props = {
   setPage: (page: number) => void
 }
 
-export const TaskItem = ({ task, todolist, setPage }: Props) => {
+export const TaskItem = ({ task, todolist }: Props) => {
   const [removeTask] = useRemoveTaskMutation()
   const [updateTask] = useUpdateTaskMutation()
 
