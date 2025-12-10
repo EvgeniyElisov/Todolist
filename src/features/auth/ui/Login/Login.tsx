@@ -15,18 +15,17 @@ import FormGroup from "@mui/material/FormGroup"
 import FormLabel from "@mui/material/FormLabel"
 import Grid from "@mui/material/Grid"
 import TextField from "@mui/material/TextField"
-import { useState } from "react"
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import styles from "./Login.module.css"
 
 export const Login = () => {
-  
   const themeMode = useAppSelector(selectThemeMode)
-  const [login] = useLoginMutation()
+  const [login, { data: loginData }] = useLoginMutation()
   const dispatch = useAppDispatch()
   const theme = getTheme(themeMode)
-  const [captchaIsRequired, setCaptchaIsRequired] = useState(false)
-  const { data: captchaUrl } = useGetCaptchaQuery(undefined, { skip: !captchaIsRequired })
+  const { data: captchaUrl } = useGetCaptchaQuery(undefined, { skip: loginData?.resultCode !== 10 })
+
+  console.log(loginData)
 
   const {
     register,
@@ -45,9 +44,6 @@ export const Login = () => {
         dispatch(setIsLoggedInAC({ isLoggedIn: true }))
         localStorage.setItem(AUTH_TOKEN, res.data.data.token)
         reset()
-      }
-      if (res.data?.resultCode === ResultCode.CaptchaError) {
-        setCaptchaIsRequired(true)
       }
     })
   }
