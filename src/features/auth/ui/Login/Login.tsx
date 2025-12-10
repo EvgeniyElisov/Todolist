@@ -19,13 +19,12 @@ import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import styles from "./Login.module.css"
 
 export const Login = () => {
+  
   const themeMode = useAppSelector(selectThemeMode)
   const [login, { data: loginData }] = useLoginMutation()
   const dispatch = useAppDispatch()
   const theme = getTheme(themeMode)
   const { data: captchaUrl } = useGetCaptchaQuery(undefined, { skip: loginData?.resultCode !== 10 })
-
-  console.log(loginData)
 
   const {
     register,
