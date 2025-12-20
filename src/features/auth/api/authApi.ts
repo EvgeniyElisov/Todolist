@@ -1,4 +1,4 @@
-import { baseApi } from "@/app/baseApi.ts"
+import { baseApi } from "@/app/baseApi"
 import type { BaseResponse } from "@/common/types"
 import type { LoginInputs } from "@/features/auth/lib/schemas"
 

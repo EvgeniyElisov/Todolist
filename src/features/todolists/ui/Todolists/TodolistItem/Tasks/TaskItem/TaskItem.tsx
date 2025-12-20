@@ -1,4 +1,4 @@
-import { EditableSpan } from "@/common/components/EditableSpan/EditableSpan"
+import { EditableSpan } from "@/common/components"
 import { TaskStatus } from "@/common/enums"
 import { useRemoveTaskMutation, useUpdateTaskMutation } from "@/features/todolists/api/tasksApi"
 import type { DomainTask } from "@/features/todolists/api/tasksApi.types"

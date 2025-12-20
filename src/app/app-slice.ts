@@ -3,6 +3,8 @@ import { tasksApi } from "@/features/todolists/api/tasksApi"
 import { todolistsApi } from "@/features/todolists/api/todolistsApi"
 import { createSlice, isFulfilled, isPending, isRejected } from "@reduxjs/toolkit"
 
+export type ThemeMode = "dark" | "light"
+
 export const appSlice = createSlice({
   name: "app",
   initialState: {
@@ -54,5 +56,3 @@ export const appSlice = createSlice({
 export const { selectThemeMode, selectAppStatus, selectAppError, selectIsLoggedIn } = appSlice.selectors
 export const { changeThemeModeAC, setAppStatusAC, setAppErrorAC, setIsLoggedInAC } = appSlice.actions
 export const appReducer = appSlice.reducer
-
-export type ThemeMode = "dark" | "light"

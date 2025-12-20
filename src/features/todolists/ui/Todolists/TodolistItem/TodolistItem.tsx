@@ -1,4 +1,4 @@
-import { CreateItemForm } from "@/common/components/CreateItemForm/CreateItemForm"
+import { CreateItemForm } from "@/common/components"
 import { useAddTaskMutation } from "@/features/todolists/api/tasksApi"
 import type { DomainTodolist } from "@/features/todolists/lib/types"
 import { FilterButtons } from "./FilterButtons/FilterButtons"

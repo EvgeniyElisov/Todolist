@@ -1,5 +1,5 @@
-import { selectIsLoggedIn } from "@/app/app-slice"
 import { Main } from "@/app/Main"
+import { selectIsLoggedIn } from "@/app/app-slice"
 import { PageNotFound, ProtectedRoute } from "@/common/components"
 import { useAppSelector } from "@/common/hooks"
 import { Login } from "@/features/auth/ui/Login/Login"

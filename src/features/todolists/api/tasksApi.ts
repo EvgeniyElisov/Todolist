@@ -9,10 +9,7 @@ export const tasksApi = baseApi.injectEndpoints({
       query: ({ todolistId, params }) => ({
         url: `todo-lists/${todolistId}/tasks`,
         params: { ...params, count: PAGE_SIZE },
-      }), // providesTags: (res, _err, todolistId) =>
-      //   res
-      //     ? [...res.items.map(({ id }) => ({ type: "Task", id }) as const), { type: "Task", id: todolistId }]
-      //     : ["Task"],
+      }),
       providesTags: (_res, _err, { todolistId }) => [{ type: "Task", id: todolistId }],
     }),
     addTask: build.mutation<BaseResponse<{ item: DomainTask }>, { todolistId: string; title: string }>({
@@ -40,7 +37,7 @@ export const tasksApi = baseApi.injectEndpoints({
       async onQueryStarted({ todolistId, taskId, model }, { dispatch, queryFulfilled, getState }) {
         const cachedArgsForQuery = tasksApi.util.selectCachedArgsForQuery(getState(), "getTasks")
 
-        let patchResults: any[] = []
+        const patchResults: Array<{ undo: () => void }> = []
         cachedArgsForQuery.forEach(({ params }) => {
           patchResults.push(
             dispatch(

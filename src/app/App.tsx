@@ -1,4 +1,3 @@
-import "./App.css"
 import { selectThemeMode, setIsLoggedInAC } from "@/app/app-slice"
 import { ErrorSnackbar, Header } from "@/common/components"
 import { ResultCode } from "@/common/enums"
@@ -14,7 +13,6 @@ import styles from "./App.module.css"
 
 export const App = () => {
   const themeMode = useAppSelector(selectThemeMode)
-  
   const [isInitialized, setIsInitialized] = useState(false)
 
   const { data, isLoading } = useMeQuery()
@@ -29,7 +27,7 @@ export const App = () => {
       dispatch(setIsLoggedInAC({ isLoggedIn: true }))
     }
     setIsInitialized(true)
-  }, [isLoading])
+  }, [isLoading, data, dispatch])
 
   if (!isInitialized) {
     return (

@@ -18,7 +18,6 @@ export const TodolistTitle = ({ todolist }: Props) => {
   const [removeTodolist] = useRemoveTodolistMutation()
   const [updateTodolistTitle] = useUpdateTodolistTitleMutation()
 
-
   const deleteTodolist = () => {
     removeTodolist(id)
   }

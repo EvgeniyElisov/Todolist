@@ -1,4 +1,4 @@
-import { CreateItemForm } from "@/common/components/CreateItemForm/CreateItemForm"
+import { CreateItemForm } from "@/common/components"
 import { useAddTodolistMutation } from "@/features/todolists/api/todolistsApi"
 import { Todolists } from "@/features/todolists/ui/Todolists/Todolists"
 import Container from "@mui/material/Container"
