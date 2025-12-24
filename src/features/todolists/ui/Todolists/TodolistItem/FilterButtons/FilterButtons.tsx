@@ -1,5 +1,4 @@
 import { useAppDispatch } from "@/common/hooks"
-import { containerSx } from "@/common/styles"
 import { todolistsApi } from "@/features/todolists/api/todolistsApi"
 import type { DomainTodolist, FilterValues } from "@/features/todolists/lib/types"
 import Box from "@mui/material/Box"
@@ -7,6 +6,16 @@ import Button from "@mui/material/Button"
 
 type Props = {
   todolist: DomainTodolist
+}
+
+const filterButtonSx = {
+  borderRadius: 2,
+  textTransform: "none",
+  fontWeight: 500,
+  transition: "all 0.2s",
+  minWidth: { xs: 60, sm: 80 },
+  px: { xs: 1.5, sm: 2 },
+  fontSize: { xs: "0.75rem", sm: "0.875rem" },
 }
 
 export const FilterButtons = ({ todolist }: Props) => {
@@ -26,21 +35,46 @@ export const FilterButtons = ({ todolist }: Props) => {
   }
 
   return (
-    <Box sx={containerSx}>
-      <Button variant={filter === "all" ? "outlined" : "text"} color={"inherit"} onClick={() => changeFilter("all")}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        mt: { xs: 1.5, sm: 2 },
+        gap: { xs: 0.75, sm: 1 },
+        flexWrap: "wrap",
+      }}
+    >
+      <Button
+        variant={filter === "all" ? "contained" : "outlined"}
+        color={"inherit"}
+        onClick={() => changeFilter("all")}
+        sx={{
+          ...filterButtonSx,
+          fontWeight: filter === "all" ? 600 : 400,
+        }}
+      >
         All
       </Button>
       <Button
-        variant={filter === "active" ? "outlined" : "text"}
+        variant={filter === "active" ? "contained" : "outlined"}
         color={"primary"}
         onClick={() => changeFilter("active")}
+        sx={{
+          ...filterButtonSx,
+          fontWeight: filter === "active" ? 600 : 400,
+        }}
       >
         Active
       </Button>
       <Button
-        variant={filter === "completed" ? "outlined" : "text"}
+        variant={filter === "completed" ? "contained" : "outlined"}
         color={"secondary"}
         onClick={() => changeFilter("completed")}
+        sx={{
+          ...filterButtonSx,
+          fontWeight: filter === "completed" ? 600 : 400,
+        }}
       >
         Completed
       </Button>

@@ -1,12 +1,22 @@
 .app {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(103, 126, 234, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(118, 75, 162, 0.03) 0px, transparent 50%);
+  transition: background-color 0.3s ease;
 }
 
 .circularProgressContainer {
   position: fixed;
-  top: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
 }

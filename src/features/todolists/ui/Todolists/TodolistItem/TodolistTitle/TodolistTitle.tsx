@@ -31,7 +31,12 @@ export const TodolistTitle = ({ todolist }: Props) => {
       <h3>
         <EditableSpan value={title} onChange={changeTodolistTitle} />
       </h3>
-      <IconButton onClick={deleteTodolist}>
+      <IconButton
+        onClick={deleteTodolist}
+        sx={{
+          flexShrink: 0,
+        }}
+      >
         <DeleteIcon />
       </IconButton>
     </div>

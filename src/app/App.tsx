@@ -39,7 +39,12 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={styles.app}>
+      <div
+        className={styles.app}
+        style={{
+          background: themeMode === "dark" ? "#121212" : "#e0e0e0",
+        }}
+      >
         <CssBaseline />
         <Header />
         <Routing />

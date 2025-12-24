@@ -1,4 +1,20 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  gap: 12px;
+  width: 100%;
+}
+
+.container h3 {
+  margin: 0;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  flex: 1;
+  word-break: break-word;
+  min-width: 0;
+  line-height: 1.4;
 }

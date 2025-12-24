@@ -2,6 +2,7 @@ import { type ChangeEvent, type KeyboardEvent, useState } from "react"
 import TextField from "@mui/material/TextField"
 import AddBoxIcon from "@mui/icons-material/AddBox"
 import IconButton from "@mui/material/IconButton"
+import Box from "@mui/material/Box"
 
 type Props = {
   onCreateItem: (title: string) => void
@@ -33,7 +34,14 @@ export const CreateItemForm = ({ onCreateItem }: Props) => {
   }
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: { xs: 0.75, sm: 1 },
+        width: "100%",
+      }}
+    >
       <TextField
         label={"Enter a title"}
         variant={"outlined"}
@@ -43,10 +51,27 @@ export const CreateItemForm = ({ onCreateItem }: Props) => {
         helperText={error}
         onChange={changeTitleHandler}
         onKeyDown={createItemOnEnterHandler}
+        fullWidth
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            borderRadius: 2,
+          },
+        }}
       />
-      <IconButton onClick={createItemHandler} color={"primary"}>
-        <AddBoxIcon />
+      <IconButton
+        onClick={createItemHandler}
+        color={"primary"}
+        sx={{
+          flexShrink: 0,
+          transition: "transform 0.2s",
+          "&:hover": {
+            transform: "scale(1.1)",
+          },
+        }}
+        aria-label="Add item"
+      >
+        <AddBoxIcon fontSize="large" />
       </IconButton>
-    </div>
+    </Box>
   )
 }

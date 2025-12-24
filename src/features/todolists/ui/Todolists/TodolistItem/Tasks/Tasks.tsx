@@ -1,6 +1,7 @@
 import { TaskStatus } from "@/common/enums"
 import { useGetTasksQuery } from "@/features/todolists/api/tasksApi"
 import type { DomainTodolist } from "@/features/todolists/lib/types"
+import Box from "@mui/material/Box"
 import List from "@mui/material/List"
 import { useState } from "react"
 import { TaskItem } from "./TaskItem/TaskItem"
@@ -35,12 +36,21 @@ export const Tasks = ({ todolist }: Props) => {
   return (
     <>
       {filteredTasks?.length === 0 ? (
-        <p>Тасок нет</p>
+        <Box
+          sx={{
+            textAlign: "center",
+            py: 4,
+            color: "text.secondary",
+            fontStyle: "italic",
+          }}
+        >
+          Тасок нет
+        </Box>
       ) : (
         <>
           <List>
             {filteredTasks?.map((task) => (
-              <TaskItem key={task.id} task={task} todolist={todolist} setPage={setPage} />
+              <TaskItem key={task.id} task={task} todolist={todolist} />
             ))}
           </List>
           <TasksPagination totalCount={data?.totalCount || 0} page={page} setPage={setPage} />

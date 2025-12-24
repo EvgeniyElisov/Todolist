@@ -35,9 +35,35 @@ export const EditableSpan = ({ value, onChange, disabled }: Props) => {
           onChange={changeTitle}
           onBlur={turnOffEditMode}
           autoFocus
+          fullWidth
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "8px",
+            },
+          }}
         />
       ) : (
-        <span onDoubleClick={turnOnEditMode}>{value}</span>
+        <span
+          onDoubleClick={turnOnEditMode}
+          style={{
+            cursor: disabled ? "default" : "pointer",
+            padding: "4px 8px",
+            borderRadius: "4px",
+            transition: "background-color 0.2s",
+            display: "inline-block",
+            minWidth: "100px",
+          }}
+          onMouseEnter={(e) => {
+            if (!disabled) {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.04)"
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "transparent"
+          }}
+        >
+          {value}
+        </span>
       )}
     </>
   )

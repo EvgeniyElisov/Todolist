@@ -2,7 +2,6 @@ import { selectThemeMode, setIsLoggedInAC } from "@/app/app-slice"
 import { AUTH_TOKEN } from "@/common/constants"
 import { ResultCode } from "@/common/enums"
 import { useAppDispatch, useAppSelector } from "@/common/hooks"
-import { getTheme } from "@/common/theme"
 import { useGetCaptchaQuery, useLoginMutation } from "@/features/auth/api/authApi"
 import { type LoginInputs, loginSchema } from "@/features/auth/lib/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -22,7 +21,6 @@ export const Login = () => {
   const themeMode = useAppSelector(selectThemeMode)
   const [login, { data: loginData }] = useLoginMutation()
   const dispatch = useAppDispatch()
-  const theme = getTheme(themeMode)
   const { data: captchaUrl } = useGetCaptchaQuery(undefined, { skip: loginData?.resultCode !== 10 })
 
   const {
@@ -47,18 +45,20 @@ export const Login = () => {
   }
 
   return (
-    <Grid container justifyContent={"center"}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl>
-          <FormLabel>
+    <Grid container justifyContent={"center"} className={styles.formContainer}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.form}
+        style={{
+          background: themeMode === "dark" ? "#1e1e1e" : "#f5f5f5",
+          color: themeMode === "dark" ? "#ffffff" : "#212121",
+        }}
+      >
+        <FormControl fullWidth>
+          <FormLabel className={styles.formLabel}>
             <p>
-              To login get registered
-              <a
-                style={{ color: theme.palette.primary.main, marginLeft: "5px" }}
-                href="https://social-network.samuraijs.com"
-                target="_blank"
-                rel="noreferrer"
-              >
+              To login get registered 
+              <a href="https://social-network.samuraijs.com" target="_blank" rel="noreferrer">
                 here
               </a>
             </p>
@@ -70,8 +70,8 @@ export const Login = () => {
               <b>Password:</b> free
             </p>
           </FormLabel>
-          <FormGroup>
-            <TextField label="Email" margin="normal" error={!!errors.email} {...register("email")} />
+          <FormGroup className={styles.formGroup}>
+            <TextField label="Email" margin="normal" error={!!errors.email} {...register("email")} fullWidth />
             {errors.email && <span className={styles.errorMessage}>{errors.email.message}</span>}
             <TextField
               type="password"
@@ -79,40 +79,38 @@ export const Login = () => {
               margin="normal"
               error={!!errors.password}
               {...register("password")}
+              fullWidth
             />
             {errors.password && <span className={styles.errorMessage}>{errors.password.message}</span>}
-            <FormControlLabel
-              label={"Remember me"}
-              control={
-                <Controller
-                  name={"rememberMe"}
-                  control={control}
-                  render={({ field: { value, ...field } }) => <Checkbox {...field} checked={value} />}
-                />
-              }
-            />
+
             {captchaUrl && (
               <>
                 <Box
                   component={"img"}
+                  className={styles.captchaImage}
                   sx={{
-                    height: 200,
-                    width: 300,
+                    height: { xs: 150, sm: 200 },
+                    width: { xs: "100%", sm: 300 },
+                    maxWidth: 300,
+                    alignSelf: "center",
+                    objectFit: "contain",
                   }}
                   src={captchaUrl?.url}
+                  alt="Captcha"
                 />
                 <TextField
-                  type="captcha"
+                  type="text"
                   label="Captcha"
                   margin="normal"
                   error={!!errors.captcha}
                   {...register("captcha")}
+                  fullWidth
                 />
                 {errors.captcha && <span className={styles.errorMessage}>{errors.captcha.message}</span>}
               </>
             )}
 
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary" className={styles.submitButton} fullWidth>
               Login
             </Button>
           </FormGroup>

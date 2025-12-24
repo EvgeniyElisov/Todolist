@@ -1,12 +1,21 @@
 .title {
   text-align: center;
-  font-size: 250px;
+  font-size: 200px;
   margin: 0;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
 }
 
 .subtitle {
   text-align: center;
-  font-size: 50px;
+  font-size: 36px;
   margin: 0;
   text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 16px;
 }
