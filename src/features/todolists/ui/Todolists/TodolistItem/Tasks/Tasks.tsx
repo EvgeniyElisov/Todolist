@@ -6,7 +6,6 @@ import List from "@mui/material/List"
 import { useState } from "react"
 import { TaskItem } from "./TaskItem/TaskItem"
 import { TasksPagination } from "./TasksPagination"
-import { TasksSkeleton } from "./TasksSkeleton/TasksSkeleton"
 
 type Props = {
   todolist: DomainTodolist
@@ -29,9 +28,7 @@ export const Tasks = ({ todolist }: Props) => {
     filteredTasks = filteredTasks?.filter((task) => task.status === TaskStatus.Completed)
   }
 
-  if (isLoading) {
-    return <TasksSkeleton />
-  }
+ 
 
   return (
     <>

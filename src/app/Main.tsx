@@ -49,7 +49,6 @@ export const Main = () => {
             width: "100%",
             maxWidth: "100%",
             m: 0,
-            justifyContent: "center",
             boxSizing: "border-box",
           }}
         >
